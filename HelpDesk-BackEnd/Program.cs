@@ -1,4 +1,5 @@
 using HelpDesk.Infra.Data.Repositories;
+using HelpDesk.Infra.Data.Repositories.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddScoped(typeof(IAtlxRepositories<>), typeof(AtlxRepositories<>));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
